@@ -1,22 +1,24 @@
 @import nib
 
 $width = 960px
-$header-height = 250px
+$header-height = 270px
 $menu-height = 30px
 $footer-height = 30px
+
+$color1 = #ec1b23
 
 global-reset()
 
 .color1
-  color #333333
-
+  background-color $color1
+  color #ffffff
+  
 .color2
   background-color #eeeeee
   color #ffffff
 
 .color3
-  background-color #0000ff
-  color #ffffff
+  color #333333
 
 .color4
   background-color #ffffff
@@ -44,40 +46,48 @@ body
     width $width
     z-index 1
 
-    h1
-      display none
-    
-    .logo
-      float right
+    > .title
+      position relative
+
+      h1
+        color $color1
+        font-weight bold
+        font-size 60px
+        padding 30px 20px
       
-      > img
-        margin: 15px 10px
+      .logo
+        float right
 
     .target
+      left 0
       margin 5px 10px
+      top 100px
+      position absolute
+      width 100%
       
-      li
+      li a
         @extend .color2
         border 1px solid #ffffff
         box-shadow 3px 3px 5px #cccccc
+        cursor pointer
         float left
         font-weight bold
-        height 80px
-        margin 10px
+        height 130px
+        margin 5px
         padding 10px
         position relative
-        width 235px
+        width 203px
 
         &.kids {background-image: url(/x/misc/kids.jpg)}
         &.ouders {background-image: url(/x/misc/ouders.jpg)}
         &.docenten {background-image: url(/x/misc/docenten.jpg)}
         &.sponsors {background-image: url(/x/misc/sponsors.jpg)}
         
-        .title a
-          @extend .color1
+        .title
+          color #ffffff
 
     > .menu
-      @extend .color3
+      @extend .color1
       bottom 0
       height $menu-height
       left 0
@@ -130,7 +140,7 @@ body
       padding-top 10px
 
   > footer
-    @extend .color3
+    @extend .color1
     height $footer-height
     margin-left auto
     margin-right auto

@@ -7,14 +7,23 @@ html
     link(rel="stylesheet", type="text/css", href="/#{build}/style.css")
   body
     header
-      h1 Stichting Doen en Laten
-      a.logo(href="/"): img(src="/x/project/logo.png",alt="logo")
+      .title
+        a.logo(href="/"): img(src="/x/project/logo.png",alt="logo")
+        h1 Stichting Doen en Laten
       .target
         ul
-          li.ouders: a.title(href="/ouders") Ouders
-          li.docenten: a.title(href="/docenten") Docenten
-          li.kids: a.title(href="/kids") Kids
-          li.sponsors: a.title(href="/sponsors") Sponsors
+          li
+            a.ouders(href="/ouders")
+              span.title Ouders
+          li
+            a.docenten(href="/docenten")
+              span.title Docenten
+          li
+            a.kids(href="/kids")
+              span.title Kids
+          li
+            a.sponsors(href="/sponsors")
+              span.title Sponsors
       nav.menu
         ul
           li: a(href="/") Home          
