@@ -1,0 +1,34 @@
+!!!
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{locals.title || 'Stichting Doen en Laten'}
+    link(rel="stylesheet", type="text/css", href="/#{build}/style.css")
+  body
+    header
+      h1 Stichting Doen en Laten
+      a.logo(href="/"): img(src="/x/project/logo.png",alt="logo")
+      .target
+        ul
+          li.ouders: a.title(href="/ouders") Ouders
+          li.docenten: a.title(href="/docenten") Docenten
+          li.kids: a.title(href="/kids") Kids
+          li.sponsors: a.title(href="/sponsors") Sponsors
+      nav.menu
+        ul
+          li: a(href="/") Home          
+          li: a(href="/organisatie")  Organisatie
+          li: a(href="/workshops") Workshops
+          li: a(href="/shop") Shop
+          li: a(href="/nieuws") Nieuws
+          li: a(href="/contact") Contact
+    .main
+      block main
+    aside
+      block sidebar
+    footer
+      ul
+        li: a(href="/disclaimer") Disclaimer
+        li: a(href="/privacy") Privacy
+        li: a(href="/sitemap") Sitemap
