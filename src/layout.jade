@@ -4,7 +4,7 @@ html
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title #{locals.title || 'Stichting Doen en Laten'}
-    link(rel="stylesheet", type="text/css", href="/#{build}/style.css")
+    link(rel="stylesheet", type="text/css", href="/#{deploy}layout.css")
   body
     header
       .title
@@ -13,17 +13,17 @@ html
       .target
         ul
           li
+            a.sponsors(href="/sponsors")
+              span.title Sponsors
+          li
             a.ouders(href="/ouders")
               span.title Ouders
           li
-            a.docenten(href="/docenten")
-              span.title Docenten
+            a.docenten(href="/onderwijs")
+              span.title Onderwijs
           li
             a.kids(href="/kids")
               span.title Kids
-          li
-            a.sponsors(href="/sponsors")
-              span.title Sponsors
       nav.menu
         ul
           li: a(href="/") Home          
