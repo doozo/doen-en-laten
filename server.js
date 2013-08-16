@@ -1,29 +1,39 @@
 #!/usr/bin/env node
 
 var express = require('express')
-var fs = require('fs')
+var stylus = require('stylus')
+var nib = require('nib')
 
-var deploy = './deploy/'
+var context = {
+  deploy: '',
+  build: Math.round(2440587.5 + (new Date).getTime() / 86400000)
+}
 
 express()
-  .use(express.logger())
-  .use(function(req, res, next){
-    if (req.path.indexOf('.') === -1) {
-      fs.exists(deploy + req.path + '.html', function(exists){
-        if (exists) {
-          req.url += '.html'
-        }
-        next()
-      });
-    } else {
-      next()
+  .set('views', __dirname + '/src')
+  .set('view engine', 'jade')
+  .use(stylus.middleware({
+    debug: true,
+    src: __dirname + '/src',
+    dest: __dirname + '/deploy',
+    compile: function(str, path) {
+      return stylus(str)
+        .set('filename', path)
+        .set('compress', true)
+        .use(nib())
     }
-  })
-  .use(express.static(deploy))
+  }))
+  .use(express.logger())
+  .use(express.static('./deploy'))
   .use('/x', express.static('./x'))
-  .use('/graphics', express.static('./graphics'))
+  .get('/', function(req, res, next){
+    res.render('index', context)
+  })
+  .get('/workshops', function(req, res, next){
+    res.render('workshops', context)
+  })
   .get('*', function(req, res) {
-    res.status(404).sendfile(deploy + 'index.html')
+    res.status(404).render('index', context)
   })
   .enable('trust proxy')
   .listen(19412)
