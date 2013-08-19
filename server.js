@@ -26,11 +26,20 @@ express()
   .use(express.logger())
   .use(express.static('./deploy'))
   .use('/x', express.static('./x'))
-  .get('/', function(req, res, next){
+  .get('/favicon.ico', function(req, res){
+    res.status(404)
+  })
+  .get('/', function(req, res){
     res.render('index', context)
   })
-  .get('/workshops', function(req, res, next){
-    res.render('workshops', context)
+  .get('/:page', function(req, res, next){
+    res.render(req.params.page, context, function(error, data){
+      if (!error) {
+        res.send(data)
+      } else {
+        res.status(404).render('index', context)
+      }
+    })
   })
   .get('*', function(req, res) {
     res.status(404).render('index', context)
