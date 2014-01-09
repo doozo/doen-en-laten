@@ -1,11 +1,15 @@
 module.exports = (grunt) ->
   context =
     build: Math.round 2440587.5 + (new Date).getTime() / 86400000
+    deploy: ''
   config =
     pkg: grunt.file.readJSON 'package.json'
     jade:
       index:
         files: {'deploy/':'src/index.jade'}
+        options: {client:false,locals:context}
+      sponsors:
+        files: {'deploy/':'src/sponsors.jade'}
         options: {client:false,locals:context}
       workshops:
         files: {'deploy/':'src/workshops.jade'}
